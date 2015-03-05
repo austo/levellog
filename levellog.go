@@ -30,6 +30,15 @@ func SetLevel(s string) (err error) {
 	return
 }
 
+func IsLevel(l Level) bool {
+	return currentLevel >= l
+}
+
+func IsLevelString(s string) bool {
+	l, _ := ParseLevel(s)
+	return IsLevel(l)
+}
+
 // TODO: test init with writer interface
 func initLoggers(l Level) {
 	currentLevel = l

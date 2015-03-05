@@ -40,6 +40,13 @@ func TestPrintlnLevel(t *testing.T) {
 	Println(l, "do you see me?")
 }
 
+func TestIsLevel(t *testing.T) {
+	SetLevel("warn")
+	if !IsLevelString("trace") {
+		t.Errorf("failed")
+	}
+}
+
 func getUserLevel(t *testing.T) Level {
 	flag.Parse()
 	l, err := ParseLevel(*userLevelString)
