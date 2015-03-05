@@ -25,7 +25,7 @@ func TestSetLevel(t *testing.T) {
 
 func TestParseLevel(t *testing.T) {
 	l := getUserLevel(t)
-	t.Logf("user level is : %s", l)
+	t.Logf("user level is: %s", l)
 }
 
 func TestPrintfLevel(t *testing.T) {

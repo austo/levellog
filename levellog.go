@@ -45,7 +45,7 @@ func initLoggers(l Level) {
 	loggers = make(map[Level]*log.Logger)
 
 	for i := DEBUG; i <= PANIC; i++ {
-		loggers[i] = log.New(os.Stderr, fmt.Sprintf("%s: ", i), log.Ldate|log.Ltime|log.Lshortfile)
+		loggers[i] = log.New(os.Stderr, fmt.Sprintf("%s: ", i), log.LstdFlags)
 	}
 }
 
@@ -61,21 +61,21 @@ func Printf(l Level, format string, v ...interface{}) {
 	if l < currentLevel {
 		return
 	}
-	loggers[l].Printf(format, v)
+	loggers[l].Printf(format, v...)
 }
 
 func Println(l Level, v ...interface{}) {
 	if l < currentLevel {
 		return
 	}
-	loggers[l].Println(v)
+	loggers[l].Println(v...)
 }
 
 func Print(l Level, v ...interface{}) {
 	if l < currentLevel {
 		return
 	}
-	loggers[l].Print(v)
+	loggers[l].Print(v...)
 }
 
 func Output(l Level, calldepth int, s string) error {
@@ -83,27 +83,27 @@ func Output(l Level, calldepth int, s string) error {
 }
 
 func Panic(v ...interface{}) {
-	loggers[PANIC].Panic(v)
+	loggers[PANIC].Panic(v...)
 }
 
 func Panicf(format string, v ...interface{}) {
-	loggers[PANIC].Panicf(format, v)
+	loggers[PANIC].Panicf(format, v...)
 }
 
 func Panicln(v ...interface{}) {
-	loggers[PANIC].Panicln(v)
+	loggers[PANIC].Panicln(v...)
 }
 
 func Fatal(v ...interface{}) {
-	loggers[CRITICAL].Fatal(v)
+	loggers[CRITICAL].Fatal(v...)
 }
 
 func Fatalf(format string, v ...interface{}) {
-	loggers[CRITICAL].Fatalf(format, v)
+	loggers[CRITICAL].Fatalf(format, v...)
 }
 
 func Fatalln(v ...interface{}) {
-	loggers[CRITICAL].Fatalln(v)
+	loggers[CRITICAL].Fatalln(v...)
 }
 
 // TODO: use stringer utility
