@@ -24,20 +24,27 @@ func TestSetLevel(t *testing.T) {
 }
 
 func TestParseLevel(t *testing.T) {
-	flag.Parse()
-	l, err := ParseLevel(*userLevelString)
-	if err != nil {
-		t.Errorf("error parsing level: %v", err)
-	}
+	l := getUserLevel(t)
 	t.Logf("user level is : %s", l)
 }
 
 func TestPrintfLevel(t *testing.T) {
+	l := getUserLevel(t)
+	initLoggers(WARN)
+	Printf(l, "this is a message at level %s", l)
+}
+
+func TestPrintlnLevel(t *testing.T) {
+	l := getUserLevel(t)
+	initLoggers(INFO)
+	Println(l, "do you see me?")
+}
+
+func getUserLevel(t *testing.T) Level {
 	flag.Parse()
 	l, err := ParseLevel(*userLevelString)
 	if err != nil {
 		t.Errorf("error parsing level: %v", err)
 	}
-	initLoggers(WARN)
-	Printf(l, "this is a message at level %s", l)
+	return l
 }
