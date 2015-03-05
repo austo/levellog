@@ -14,6 +14,7 @@ const (
 	TRACE    Level = iota
 	INFO     Level = iota
 	WARN     Level = iota
+	ERROR    Level = iota
 	CRITICAL Level = iota
 	PANIC    Level = iota
 )
@@ -117,6 +118,8 @@ func (l Level) String() string {
 		return "INFO"
 	case WARN:
 		return "WARN"
+	case ERROR:
+		return "ERROR"
 	case CRITICAL:
 		return "CRITICAL"
 	case PANIC:
@@ -137,6 +140,8 @@ func ParseLevel(s string) (Level, error) {
 		return INFO, nil
 	case "WARN":
 		return WARN, nil
+	case "ERROR":
+		return ERROR, nil
 	case "CRITICAL":
 		return CRITICAL, nil
 	case "PANIC":
