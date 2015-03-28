@@ -8,6 +8,7 @@ import (
 )
 
 type Level int
+type Producer func() string
 
 const (
 	DEBUG    Level = iota
@@ -70,6 +71,13 @@ func Println(l Level, v ...interface{}) {
 		return
 	}
 	loggers[l].Println(v...)
+}
+
+func PrintlnFunc(l Level, f Producer) {
+	if l < currentLevel {
+		return
+	}
+	loggers[l].Println(f())
 }
 
 func Print(l Level, v ...interface{}) {
